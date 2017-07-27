@@ -4,6 +4,7 @@
 bin/
 gen/
 target/
+.vagrant/
 
 ###############
 # Miscellaneous
