@@ -15,6 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.network "forwarded_port", guest: 80, host: 8080
   #config.vm.synced_folder "htdocs", "/var/www/html"
   #config.vm.provision "shell", path: "config.sh"
+  #
+  #
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     vb.gui = true
@@ -26,5 +28,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--vram", "128"]
     # Give the VM access to the host's CD/DVD drive, by attaching the medium to the virtual IDE controller
     #vb.customize ["storageattach", :id, "--storagectl", "IDE Controller", "--port 0", "--device 0", "--type", "dvddrive"]
+  end
+  #
+  #
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "./playbook.yml"
+    ansible.verbose = true
+    ansible.sudo = true
   end
 end
